@@ -1,0 +1,65 @@
+# General Stuff
+*.ipynb_checkpoints*
+**__pycache**
+*.idea*
+*.env.sh*
+
+# Project Specific Stuff
+joblogs/*.out
+joblogs/*.err
+*other_repos*
+results/
+results_storage/
+filelists/**/base.json
+filelists/**/val.json
+filelists/**/novel.json
+Datasets/**/Data
+Datasets/**/Data.tar.gz
+Datasets/**/*.tar.gz_part_*
+checkpoints/miniImagenet
+checkpoints/tieredImagenet
+checkpoints/cifar
+checkpoints/CUB
+notebooks/
+features/miniImagenet
+features/cifar
+features/CUB
+features/tieredImagenet
+jobscripts/run[0-9].sh
+trash/
+venv/
+joblogs/condor_*
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Ehsan stuff
+*.ftpconfig
+code_backups*
+
+#CSV files due to some of their sizes
