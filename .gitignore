@@ -2,7 +2,6 @@
 *.ipynb_checkpoints*
 **__pycache**
 *.idea*
-*.env.sh*
 
 # Project Specific Stuff
 joblogs/*.out
