@@ -1,0 +1,14 @@
+{
+  "start_seed" : 0,
+  "num_seeds" : 20,
+  "n_shot_list" : [5, 10],
+  "n_way_list" : [5, 10, 15, 20],
+  "split_list" : ["val", "novel"],
+  "dataset_list" : ["cifar"],
+  "method_list" : ["S2M2_R"],
+  "model_list" : ["WideResNet28_10"],
+  "firth_c_list" : [0.0, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0],
+  "iter_num" : 100,
+  "torch_threads" : 2,
+  "fine_tune_epochs" : 100
+}
