@@ -1,0 +1,13 @@
+8a9ad7b84b651c222b5c5cbd66c1af1a  ./miniImagenet/WideResNet28_10_S2M2_R/val.hdf5
+7191a6e2d98cfe15964bb58ae1ca13f7  ./miniImagenet/WideResNet28_10_S2M2_R/novel.hdf5
+6672d2da26c6d1d3376139e28fec59fd  ./miniImagenet/WideResNet28_10_rotation/val.hdf5
+bd35324f3b528cc1f37f9be5374b0afa  ./miniImagenet/WideResNet28_10_rotation/novel.hdf5
+dd1cb590725916e678093c7e15050504  ./CUB/WideResNet28_10_S2M2_R/val.hdf5
+e356502f61ba6533f1fdb8f0e84669fa  ./CUB/WideResNet28_10_S2M2_R/novel.hdf5
+f7c6ca8a806a68fbfacabe9e4c13857a  ./CUB/WideResNet28_10_rotation/novel.hdf5
+3c8e4d171b2d5d554d4f496b918e0f0f  ./tieredImagenet/WideResNet28_10_S2M2_R/val.hdf5
+8f31cf74a384436f2dcea727979b6731  ./tieredImagenet/WideResNet28_10_S2M2_R/novel.hdf5
+36147550fb8221548ecc56caed489a63  ./cifar/WideResNet28_10_S2M2_R/val.hdf5
+197c5c78e6a05dddf6c8764ced1d8d7c  ./cifar/WideResNet28_10_S2M2_R/novel.hdf5
+bc394d6364ed3a7542b5adee2dc34406  ./cifar/WideResNet28_10_rotation/val.hdf5
+4370ec5d711065e3ee12f7214bf1ab34  ./cifar/WideResNet28_10_rotation/novel.hdf5
