@@ -6,7 +6,6 @@
 # Project Specific Stuff
 joblogs/*.out
 joblogs/*.err
-*other_repos*
 results/
 results_storage/
 filelists/**/base.json
@@ -19,7 +18,6 @@ checkpoints/miniImagenet
 checkpoints/tieredImagenet
 checkpoints/cifar
 checkpoints/CUB
-notebooks/
 features/miniImagenet
 features/cifar
 features/CUB
@@ -27,7 +25,6 @@ features/tieredImagenet
 jobscripts/run[0-9].sh
 trash/
 venv/
-joblogs/condor_*
 
 ### macOS ###
 # General
@@ -59,6 +56,5 @@ Temporary Items
 
 # Ehsan stuff
 *.ftpconfig
-code_backups*
 
 #CSV files due to some of their sizes
