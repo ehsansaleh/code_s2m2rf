@@ -29,6 +29,7 @@ tables:
 ####################   Filelists   #######################
 ##########################################################
 filelists:
+	cd filelists && ./download.sh
 	source .env.sh && cd filelists &&  python json_maker.py
 
 ##########################################################
