@@ -381,11 +381,15 @@ This sub-directory contains the S2M2R with cosine classifier experiments conduct
 +  <details>
    <summary><strong>[Optional] Generating the Datasets filelists</strong></summary>
    
-      Run `python filelists/json_maker.py`
+      Run `make filelists`
       
       1. You need to have the datasets downloaded and extracted before performing this step.
   
       2. One of the generated outputs is `./filelists/miniImagenet/base.json`.
+ 
+         * The [`filelists/download.sh`](./filelists/download.sh) script downloads a set of template json filelists. 
+           * The template json files include a list of image filenames and labels in the order we used them.
+           * The template json files only include relative image paths, which should be converted to absolute paths using the `filelists/json_maker.py`](./filelists/json_maker.py) script.
   
          * The [`filelists/json_maker.py`](./filelists/json_maker.py) script generates these json files for all the `base`, `val`, and `novel` splits, and all the `miniImagenet`, `tieredImagenet`, `CUB` and `cifar` datasets by default.
   
