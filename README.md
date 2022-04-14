@@ -1,104 +1,11 @@
-# Firth Bias Reduction in Few-shot Classification (S2M2R Features with Cosine Classifiers) 
-This sub-directory contains the S2M2R with cosine classifier experiments conducted in the [On the Importance of Firth Bias Reduction in Few-Shot Classification](https://openreview.net/pdf?id=DNRADop4ksB) paper.
+# Firth Bias Reduction on Cosine Classifiers with S2M2R Features 
+This repository contains the firth bias reduction experiments with S2M2R feature backbones and cosine classifiers. The theoretical derivation of the Firth bias reduction term on cosine classifiers is shown in our paper ["On the Importance of Firth Bias Reduction in Few-Shot Classification"](https://openreview.net/pdf?id=DNRADop4ksB). This is one of the three code repositories of our paper, and is a sub-module of the the main ["Firth Bias Reduction in Few-Shot Learning" repository](https://github.com/ehsansaleh/firth_bias_reduction). 
 
-**Note**: 
-  * The code under this sub-directory is based upon the [S2M2 Charting the Right Manifold: Manifold Mixup for Few-shot Learning](https://github.com/nupurkmr9/S2M2_fewshot) code. 
-  * The original readme file of S2M2 was moved to [S2M2_README.md](./S2M2_README.md).
-  * We have added a few missing directories ([`checkpoints`](./checkpoints), [`features`](./features), and [`Datasets`](./Datasets)) along with the downloading shell scripts in them to help you populate them with the files we used as easy as possible.
+Here is the effect of Firth bias reduction on cosine classifiers and S2M2R feature backbones.
 
-<details open>
-<summary><h2>The Paper in Pictures</h2></summary>
-
-  + <details open>
-    <summary><strong>The MLE Bias in Few-shot Classification</strong></summary>
-  
-    Here is a visualization to help you get the overall context of typical loss minimization (MLE) bias with only a few samples.
-
-    <img src="https://raw.githubusercontent.com/ehsansaleh/code_firth/main/opt/static_figures/mlebiasslide.svg" alt="drawing" width="96%"/>
-
-    </details>
-  
-  + <details>
-    <summary><strong>Firth Bias Reduction in Few Words</strong></summary>
-   
-    + <details open>
-      <summary><strong>For 1-Layer Logistic and Cosine Classifiers with the Cross-Entropy Loss</strong></summary>
-
-      All you need to do, is replace
-      
-      <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\hat{\beta} = \text{argmin}_{\beta} \quad \frac{1}{N}\sum_{i=1}^{N} \bigg[\text{CE}(\mathbf{P}_i, \mathbf{y}_i)\bigg]" width="35%"></p>
-      
-      with
-  
-      <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\hat{\beta}_{\text{Firth}} = \text{argmin}_{\beta} \quad \frac{1}{N}\sum_{i=1}^{N} \bigg[\text{CE}(\mathbf{P}_i, \mathbf{y}_i) %2B \lambda \cdot \text{CE}(\mathbf{P}_i,\mathbf{U}) \bigg]" width="50%"></p>
-     
-      where U is the uniform distribution over the classes, and lambda is a positive constant. The CE-term with the uniform distribution is basically the sum of the prediction log-probability values over all data points and classes. 
+<img src="./figures/dacc_vs_nways_miniImagenet.svg" alt="drawing" width="47.2%"/> <img src="./figures/dacc_vs_nways_cifar.svg" alt="drawing" width="46.8%"/>
     
-      </details>
-  
-    + <details>
-      <summary><strong>General Firth Bias Reduction Form</strong></summary>
-  
-      Add a log-det of FIM term to your loss minimization problem. That is, replace
-      
-      <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\hat{\beta} = \text{argmin}_{\beta} \quad \bigg[l(\beta)\bigg]" width="20%"  align="center"></p>
-      
-      with 
-      
-      <p align="center"><img src="https://render.githubusercontent.com/render/math?math=\hat{\beta}_{\text{Firth}} = \text{argmin}_{\beta} \quad \bigg[l(\beta) %2B \lambda\cdot \log(\det(F))\bigg]" width="40%" align="center"></p>,
-      
-      This was proven to reduce the bias of your estimated parameters.
-      </details>
-    
-    </details>
-  
-  
-      
-
-  + <details>
-    <summary><strong>Firth Bias Reduction in a Geometric Experiment</strong></summary>
-  
-    Here is a simple example show-casing average the MLE's bias from the true parameters in a geometric experiment with a fair coin, and the slow rate at which this bias disappears.
-
-    <img src="https://raw.githubusercontent.com/ehsansaleh/code_firth/main/opt/static_figures/avgmle_vs_nsamples_geom.svg" alt="drawing" width="46.5%"/> <img src="https://raw.githubusercontent.com/ehsansaleh/code_firth/main/opt/static_figures/logmlebias_vs_lognsamples_geom.svg" alt="drawing" width="47.5%"/>
-
-    </details>
-
-  + <details>
-    <summary><strong>Firth Bias Reduction Improvements in Few-shot Classification Tasks</strong></summary>
- 
-    Below is the effect of Firth bias reduction on cosine classifiers and S2M2R features.
-
-    <img src="./figures/dacc_vs_nways_miniImagenet.svg" alt="drawing" width="48%"/> <img src="./figures/dacc_vs_nways_cifar.svg" alt="drawing" width="46%"/>
-    
-    <img src="./figures/dacc_vs_nways_tieredImagenet.svg" alt="drawing" width="94%"/>
- 
-    Below is the effect of Firth bias reduction campared to typical L2 regularization in 16-way few-shot classification tasks using basic feature backbones and 3-layer logistic classifiers.
-
-    <img src="https://raw.githubusercontent.com/ehsansaleh/code_firth/main/opt/static_figures/dacc_vs_nshots_firth_3layer_mini.svg" alt="drawing" width="48%"/> <img src="https://raw.githubusercontent.com/ehsansaleh/code_firth/main/opt/static_figures/dacc_vs_nshots_l2_3layer_mini.svg" alt="drawing" width="46%"/>
-
-    </details>
-
-</details>
-
-<details>
-<summary><h2>Nice Code Features</h2></summary>
-
-  We tried to structure the code as **user-friendly** as possible. Following features are worth considerations:
-  1. **Data Inclusion**: All the data needed to produce the figures and tables, including  
-     1. the extracted features,
-     2. the feature backbone parameters,
-     3. the datasets,
-     4. the experimental results and data,
-     5. the generated figures and tables, etc.
-
-      are either included in the repository themselves, or a google-drive link to them with automated downloading scripts is included.
-  2. **Download Automation**: Downloading heavy feature files, datasets, or backbone parameters manually, and then transferring them to a cluster storage can be difficult and time-consuming. To alleviate this, we included automated downloading scripts for each of these elements. Just take a look at [`./features/download.sh`](./features/download.sh) or [`./Datasets/download.sh`](./Datasets/download.sh) or [`./checkpoints/download.sh`](./checkpoints/download.sh); all the google drive links are included, a script will download them for you, and verify their correctness using the md5 checksums included in the repo. These scripts were tested multiple times at the time of writing, and if a breaking update happens to the google-drive api in the future, we will modify the download code to fix the issue as soon as you let us know!
-  3. **Python Environment Specification**: Not only we provide our exact python library dependencies and versions in the [`requirements.txt`](./requirements.txt) file, we also offer some automated helper scripts to create virtual environments. If you'd rather run your code in an environment of your choosing, that is totally fine as well.
-  4. **Reproducibility and Random Effects Matching**: All the randomization effects (such as the batch ordering, the parameter initializations, etc.) are controlled through rigorous seeding of the random generators. The results are tested to be deterministically reproducible (i.e., running the same code 10 times will give you the same exact result every time). This can be useful if you want to make a slight algorithmic change, and observe the difference; all the randomized effects will be matched between the two runs.
-
-  Just give this code a try; it won't take much of your time to set up. You may even find it a good starting point for your own project :)
-</details>
+<img src="./figures/dacc_vs_nways_tieredImagenet.svg" alt="drawing" width="94%"/>
 
 <details>
 <summary><h2>Quick Q&A Rounds</h2></summary>
@@ -219,9 +126,20 @@ This sub-directory contains the S2M2R with cosine classifier experiments conduct
    
 +  <details>
    <summary><strong>Cloning the Repo</strong></summary>
-
-   1. `git clone https://github.com/ehsansaleh/firth_bias_reduction.git`
-   2. `cd ./firth_bias_reduction/code_s2m2rf`
+   
+   +  <details open>
+      <summary><strong>[Option 1] Cloning All Three Repositories of Our Paper</strong></summary>
+ 
+      1. `git clone --recursive https://github.com/ehsansaleh/firth_bias_reduction.git`
+      2. `cd firth_bias_reduction/code_s2m2rf`
+      </details>
+ 
+   +  <details>
+      <summary><strong>[Option 2] Cloning This Repository Alone</strong></summary>
+ 
+      1. `git clone https://github.com/ehsansaleh/code_s2m2rf.git`
+      2. `cd code_s2m2rf`
+      </details>
 
    </details>
    
@@ -556,6 +474,30 @@ This sub-directory contains the S2M2R with cosine classifier experiments conduct
   </details>
   
 </details>
+ 
+<details>
+<summary><h2>Nice Code Features</h2></summary>
+
+  We tried to structure the code as **user-friendly** as possible. Following features are worth considerations:
+  1. **Data Inclusion**: All the data needed to produce the figures and tables, including  
+     1. the extracted features,
+     2. the feature backbone parameters,
+     3. the datasets,
+     4. the experimental results and data,
+     5. the generated figures and tables, etc.
+
+      are either included in the repository themselves, or a google-drive link to them with automated downloading scripts is included.
+  2. **Download Automation**: Downloading heavy feature files, datasets, or backbone parameters manually, and then transferring them to a cluster storage can be difficult and time-consuming. To alleviate this, we included automated downloading scripts for each of these elements. Just take a look at [`./features/download.sh`](./features/download.sh) or [`./Datasets/download.sh`](./Datasets/download.sh) or [`./checkpoints/download.sh`](./checkpoints/download.sh); all the google drive links are included, a script will download them for you, and verify their correctness using the md5 checksums included in the repo. These scripts were tested multiple times at the time of writing, and if a breaking update happens to the google-drive api in the future, we will modify the download code to fix the issue as soon as you let us know!
+  3. **Python Environment Specification**: Not only we provide our exact python library dependencies and versions in the [`requirements.txt`](./requirements.txt) file, we also offer some automated helper scripts to create virtual environments. If you'd rather run your code in an environment of your choosing, that is totally fine as well.
+  4. **Reproducibility and Random Effects Matching**: All the randomization effects (such as the batch ordering, the parameter initializations, etc.) are controlled through rigorous seeding of the random generators. The results are tested to be deterministically reproducible (i.e., running the same code 10 times will give you the same exact result every time). This can be useful if you want to make a slight algorithmic change, and observe the difference; all the randomized effects will be matched between the two runs.
+
+  Just give this code a try; it won't take much of your time to set up. You may even find it a good starting point for your own project :)
+</details>
+ 
+## Code Origins 
+  * This repository is based upon the [S2M2 Charting the Right Manifold: Manifold Mixup for Few-shot Learning](https://github.com/nupurkmr9/S2M2_fewshot) code. 
+  * The original readme file of the S2M2 repository was moved to [S2M2_README.md](./S2M2_README.md).
+  * We have added a few missing directories ([`checkpoints`](./checkpoints), [`features`](./features), and [`Datasets`](./Datasets)) along with their downloading shell scripts to help you populate them as quickly as possible.
    
 ## References
 * Here is the arxiv link to our paper:
