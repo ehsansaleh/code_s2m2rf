@@ -12,7 +12,7 @@ Here is the effect of Firth bias reduction on cosine classifiers and S2M2R featu
 
 1. **Question**: Give me a quick-starter code to start reproducing the paper trainings on a GPU?
    ```bash
-   git clone https://github.com/ehsansaleh/firth_bias_reduction.git
+   git clone --recursive https://github.com/ehsansaleh/firth_bias_reduction.git
    cd ./firth_bias_reduction/code_s2m2rf
    ./features/download.sh
    ./main_firth.sh
