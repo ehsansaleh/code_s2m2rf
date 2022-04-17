@@ -8,9 +8,8 @@ joblogs/*.out
 joblogs/*.err
 results/
 results_storage/
-filelists/**/base.json
-filelists/**/val.json
-filelists/**/novel.json
+filelists/**/*.json
+filelists/**/*.csv
 Datasets/**/Data
 Datasets/**/Data.tar.gz
 Datasets/**/*.tar.gz_part_*
