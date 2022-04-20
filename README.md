@@ -1,6 +1,8 @@
 # Firth Bias Reduction on Cosine Classifiers with S2M2R Features 
 This repository contains the firth bias reduction experiments with S2M2R feature backbones and cosine classifiers. The theoretical derivation of the Firth bias reduction term on cosine classifiers is shown in our paper ["On the Importance of Firth Bias Reduction in Few-Shot Classification"](https://openreview.net/pdf?id=DNRADop4ksB). This is one of the three code repositories of our paper, and is a sub-module of the the main ["Firth Bias Reduction in Few-Shot Learning" repository](https://github.com/ehsansaleh/firth_bias_reduction). 
 
+For a concise and informal description of our work, check out our paper's website: [https://ehsansaleh.github.io/firthfsl](https://ehsansaleh.github.io/firthfsl)
+
 Here is the effect of Firth bias reduction on cosine classifiers and S2M2R feature backbones.
 
 <img src="./figures/dacc_vs_nways_miniImagenet.svg" alt="drawing" width="47.2%"/> <img src="./figures/dacc_vs_nways_cifar.svg" alt="drawing" width="46.8%"/>
@@ -65,7 +67,7 @@ Here is the effect of Firth bias reduction on cosine classifiers and S2M2R featu
    ce_term = ce_loss(logits, target)
   
    log_probs = logits - torch.logsumexp(logits, dim=-1, keepdim=True)
-   firth_term = log_probs.mean()
+   firth_term = -log_probs.mean()
   
    loss = ce_term + lam * firth_term
    loss.backward()
@@ -508,6 +510,7 @@ Here is the effect of Firth bias reduction on cosine classifiers and S2M2R featu
   * The open-review forum link: [https://openreview.net/forum?id=DNRADop4ksB](https://openreview.net/forum?id=DNRADop4ksB)
 * Our paper got a spot-light presentation at ICLR 2022.
   * We will update here with links to the presentation video and the web-page on `iclr.cc`.
+* Here is a web-page for our paper: [https://ehsansaleh.github.io/firthfsl](https://ehsansaleh.github.io/firthfsl)
 * Here is the bibtex citation entry for our work:
 ```
 @inproceedings{ghaffari2022fslfirth,
